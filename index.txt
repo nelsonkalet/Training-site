@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Paris - Assessment Room Training</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    header {
+      background-color: #B22222; /* Medium dark red */
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background-color: #8B0000; /* Matching dark red */
+      padding: 1rem;
+    }
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    .section {
+      display: none;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Paris - Assessment Room Training</h1>
+  </header>
+
+  <nav>
+    <label for="topicSelect">Choose a topic:</label>
+    <select id="topicSelect">
+      <option value="">--Select--</option>
+      <optgroup label="Evaluation">
+        <option value="terminology">Terminology</option>
+        <option value="rules">Rules</option>
+        <option value="anatomy">Anatomy</option>
+      </optgroup>
+      <optgroup label="Screening">
+        <option value="sop">SOP</option>
+        <option value="cast">Cast Evaluation</option>
+      </optgroup>
+      <optgroup label="Tech Triage">
+        <option value="decision">Decision Making</option>
+        <option value="pricing">Pricing</option>
+      </optgroup>
+    </select>
+  </nav>
+
+  <!-- Evaluation Sections -->
+  <div id="terminology" class="section">
+    <h2>Terminology</h2>
+    <p>Placeholder content for terminology in evaluation training.</p>
+  </div>
+
+  <div id="rules" class="section">
+    <h2>Rules</h2>
+    <p>Placeholder content for rules in evaluation training.</p>
+  </div>
+
+  <div id="anatomy" class="section">
+    <h2>Anatomy</h2>
+    <p>Placeholder content for anatomy in evaluation training.</p>
+  </div>
+
+  <!-- Screening Sections -->
+  <div id="sop" class="section">
+    <h2>Screening: SOP</h2>
+    <p>This video covers SOP procedures for screening.</p>
+    <video width="640" height="360" controls>
+      <source src="ScrSOP_v1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div id="cast" class="section">
+    <h2>Screening: Cast Evaluation</h2>
+    <p>This video covers cast evaluation techniques.</p>
+    <video width="640" height="360" controls>
+      <source src="ScrCastEval_v1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Tech Triage Sections -->
+  <div id="decision" class="section">
+    <h2>Decision Making</h2>
+    <p>Placeholder content for decision making in tech triage.</p>
+  </div>
+
+  <div id="pricing" class="section">
+    <h2>Pricing</h2>
+    <p>Placeholder content for pricing in tech triage.</p>
+  </div>
+
+  <script>
+    const topicSelect = document.getElementById("topicSelect");
+    const sections = document.querySelectorAll(".section");
+
+    topicSelect.addEventListener("change", function() {
+      sections.forEach(section => section.style.display = "none");
+      const selected = this.value;
+      if (selected) {
+        document.getElementById(selected).style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
