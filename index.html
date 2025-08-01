@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Training Site</title>
+  <title>Paris - Assessment Room Training</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,13 +12,14 @@
       background-color: #f9f9f9;
     }
     header {
-      background-color: #2c3e50;
+      background-color: #8B0000;
       padding: 1rem;
       color: white;
       text-align: center;
     }
     nav {
-      background-color: #34495e;
+        background-color: #8B0000;  /* Firebrick */
+
       padding: 1rem;
     }
     select {
@@ -52,7 +53,7 @@
 </head>
 <body>
   <header>
-    <h1>Training Modules</h1>
+    <h1>Paris Assessment Room Training</h1>
   </header>
 
   <nav>
@@ -65,9 +66,9 @@
         <option value="anatomy">Anatomy</option>
       </optgroup>
       <optgroup label="Screening">
-        <option value="cast">Cast Evaluation</option>
-        <option value="calcaneal">Calcaneal Vertical</option>
-        <option value="landmarking">Landmarking</option>
+        <option value="cast">Standard Operating Procedure</option>
+        <option value="calcaneal">Cast Evaluation</option>
+        <option value="landmarking">Quiz</option>
       </optgroup>
       <optgroup label="Tech Triage">
         <option value="decision">Decision Making</option>
@@ -90,37 +91,106 @@
     <div id="anatomy" class="section">
       <h2>Anatomy</h2>
       <p>Review of lower limb anatomy relevant to assessment and orthotic intervention.</p>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/6WWqU0iEMy0" title="Anatomy Video" frameborder="0" allowfullscreen></iframe>
-      <div class="quiz">
-        <h3>Quick Quiz</h3>
-        <form>
-          <label>1. Which of the following is part of the lower limb?
-            <br><input type="radio" name="q1"> Humerus
-            <br><input type="radio" name="q1"> Femur
-            <br><input type="radio" name="q1"> Clavicle
-          </label>
-          <label>2. The calcaneus is also known as:
-            <br><input type="radio" name="q2"> Heel bone
-            <br><input type="radio" name="q2"> Knee cap
-            <br><input type="radio" name="q2"> Shin bone
-          </label>
-          <button type="button" onclick="alert('This is a placeholder quiz — results not tracked.')">Submit</button>
-        </form>
-      </div>
-    </div>
+      <iframe width="560" height="315" src="Screening.mp4" title="Anatomy Video" frameborder="0" allowfullscreen></iframe>
+
+<div class="quiz">
+  <h3>Quick Quiz</h3>
+  <form id="quizForm">
+    <label id="q1label">1. Which of the following is part of the lower limb?<br>
+      <input type="radio" name="q1" value="a"> Humerus<br>
+      <input type="radio" name="q1" value="b"> Femur<br> <!-- ✅ Correct -->
+      <input type="radio" name="q1" value="c"> Clavicle
+    </label><br><br>
+
+    <label id="q2label">2. The calcaneus is also known as:<br>
+      <input type="radio" name="q2" value="a"> Heel bone<br> <!-- ✅ Correct -->
+      <input type="radio" name="q2" value="b"> Knee cap<br>
+      <input type="radio" name="q2" value="c"> Shin bone
+    </label><br><br>
+
+    <button type="button" onclick="checkAnswers()">Submit</button>
+  </form>
+  <div id="quizResult" style="margin-top:1rem; font-weight:bold;"></div>
+</div>
+
+<script>
+  function checkAnswers() {
+    let score = 0;
+    const resultDiv = document.getElementById('quizResult');
+
+    // Reset previous results
+    document.getElementById('q1label').style.color = '';
+    document.getElementById('q2label').style.color = '';
+    document.getElementById('q1label').innerHTML = `1. Which of the following is part of the lower limb?<br>
+      <input type="radio" name="q1" value="a"> Humerus<br>
+      <input type="radio" name="q1" value="b"> Femur<br>
+      <input type="radio" name="q1" value="c"> Clavicle`;
+
+    document.getElementById('q2label').innerHTML = `2. The calcaneus is also known as:<br>
+      <input type="radio" name="q2" value="a"> Heel bone<br>
+      <input type="radio" name="q2" value="b"> Knee cap<br>
+      <input type="radio" name="q2" value="c"> Shin bone`;
+
+    const q1 = document.querySelector('input[name=\"q1\"]:checked');
+    const q2 = document.querySelector('input[name=\"q2\"]:checked');
+
+    if (q1) {
+      if (q1.value === 'b') {
+        score++;
+        document.getElementById('q1label').style.color = 'green';
+      } else {
+        document.getElementById('q1label').innerHTML += `<br><span style='color:red;'>Incorrect. The correct answer is: Femur.</span>`;
+      }
+    }
+
+    if (q2) {
+      if (q2.value === 'a') {
+        score++;
+        document.getElementById('q2label').style.color = 'green';
+      } else {
+        document.getElementById('q2label').innerHTML += `<br><span style='color:red;'>Incorrect. The correct answer is: Heel bone.</span>`;
+      }
+    }
+
+    resultDiv.textContent = `You got ${score} out of 2 correct.`;
+  }
+</script>
+
+
+<script>
+  function checkAnswers() {
+    const q1 = document.querySelector('input[name=\"q1\"]:checked');
+    const q2 = document.querySelector('input[name=\"q2\"]:checked');
+    let score = 0;
+
+    if (q1 && q1.value === 'b') score++;
+    if (q2 && q2.value === 'a') score++;
+
+    document.getElementById('quizResult').textContent = `You got ${score} out of 2 correct.`;
+  }
+</script>
 
     <div id="cast" class="section">
-      <h2>Cast Evaluation</h2>
+      <h2>Standard Operating Procedure</h2>
       <p>Learn how to assess casts for accuracy, shape, and positioning before use in device creation.</p>
+<video width="560" height="315" controls>
+  <source src="ScrSOP_v1" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
     </div>
 
-    <div id="calcaneal" class="section">
-      <h2>Calcaneal Vertical</h2>
-      <p>Explanation of measuring the calcaneal vertical angle and its clinical significance.</p>
-    </div>
+   <div id="cast" class="section">
+  <h2>Cast Evaluation</h2>
+  <p>Learn how to assess casts for accuracy, shape, and positioning before use in device creation.</p>
+
+  <video width="640" height="360" controls>
+    <source src="ScrCastEval_v1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
     <div id="landmarking" class="section">
-      <h2>Landmarking</h2>
+      <h2>Quiz</h2>
       <p>Overview of how to correctly landmark anatomical reference points on the foot.</p>
     </div>
 
