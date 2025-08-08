@@ -77,6 +77,94 @@
       <source src="ScrSOP_v1.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+  
+    <h3>Quiz</h3>
+    <form id="sopQuiz">
+        <div>
+            <p>1. Which of the following must be verified during Order Verification? (Select all that apply)</p>
+            <label><input type="radio" name="q1" value="A"> A) Name on the cast matches the work order</label><br>
+            <label><input type="radio" name="q1" value="B"> B) Cost of device</label><br>
+            <label><input type="radio" name="q1" value="C"> C) Work order is complete</label><br>
+            <label><input type="radio" name="q1" value="D"> D) A and C</label><br>
+            <label><input type="radio" name="q1" value="E"> E) All of the above</label><br>
+            <span class="feedback" id="f1"></span>
+        </div>
+
+        <div>
+            <p>2. What are possible staging locations for completed screening? (Select all that apply)</p>
+            <label><input type="radio" name="q2" value="A"> A) Tech Triage cart/table</label><br>
+            <label><input type="radio" name="q2" value="B"> B) Cast cutting table</label><br>
+            <label><input type="radio" name="q2" value="C"> C) Directly passing to QC</label><br>
+            <label><input type="radio" name="q2" value="D"> D) A&E department</label><br>
+            <label><input type="radio" name="q2" value="E"> E) Line 3 cart</label><br>
+            <span class="feedback" id="f2"></span>
+        </div>
+
+        <div>
+            <p>3. Which actions are part of Selecting & Preparing Casts? (Select all that apply)</p>
+            <label><input type="radio" name="q3" value="A"> A) Mark casts as Symmetric or Asymmetric</label><br>
+            <label><input type="radio" name="q3" value="B"> B) Draw a vertical or neutral calcaneal line on the heel(s)</label><br>
+            <label><input type="radio" name="q3" value="C"> C) Select foam box casts with a ✓ inside the foam</label><br>
+            <label><input type="radio" name="q3" value="D"> D) All of the above</label><br>
+            <label><input type="radio" name="q3" value="E"> E) A and B</label><br>
+            <span class="feedback" id="f3"></span>
+        </div>
+
+        <div>
+            <p>4. Which situations would send an order to Line 2 instead of Line 1? (Select all that apply)</p>
+            <label><input type="radio" name="q4" value="A"> A) Subsequent pair orders with no changes</label><br>
+            <label><input type="radio" name="q4" value="B"> B) Complex extrinsic rearfoot/forefoot posting</label><br>
+            <label><input type="radio" name="q4" value="C"> C) Blank special instructions box</label><br>
+            <label><input type="radio" name="q4" value="D"> D) Order is missing shoe size</label><br>
+            <label><input type="radio" name="q4" value="E"> E) All of the above</label><br>
+            <span class="feedback" id="f4"></span>
+        </div>
+
+        <div>
+            <p>5. Which types of orders should be sent to Tech Triage? (Select all that apply)</p>
+            <label><input type="radio" name="q5" value="A"> A) Complete work orders</label><br>
+            <label><input type="radio" name="q5" value="B"> B) Not legible writing</label><br>
+            <label><input type="radio" name="q5" value="C"> C) Requests we cannot do</label><br>
+            <label><input type="radio" name="q5" value="D"> D) Subsequent pair orders with no changes</label><br>
+            <label><input type="radio" name="q5" value="E"> E) Order has a dorsal forefoot post</label><br>
+            <span class="feedback" id="f5"></span>
+        </div>
+
+        <div>
+            <p>6. Which of the following correctly describe the purpose of Screening? (Select all that apply)</p>
+            <label><input type="radio" name="q6" value="A"> A) Ensure work orders are accurate and complete before production</label><br>
+            <label><input type="radio" name="q6" value="B"> B) Identify which workflow or production line the order belongs to</label><br>
+            <label><input type="radio" name="q6" value="C"> C) Reduce production time by identifying incomplete orders</label><br>
+            <label><input type="radio" name="q6" value="D"> D) Support Order Entry with templating and clarification</label><br>
+            <label><input type="radio" name="q6" value="E"> E) All of the above</label><br>
+            <span class="feedback" id="f6"></span>
+        </div>
+
+        <br>
+        <button type="button" onclick="checkSOPQuiz()">Submit Answers</button>
+    </form>
+</div>
+
+<script>
+function checkSOPQuiz() {
+    const answers = { q1: 'D', q2: 'B', q3: 'D', q4: 'B', q5: 'C', q6: 'E' };
+    for (let q in answers) {
+        let selected = document.querySelector(`input[name="${q}"]:checked`);
+        let feedback = document.getElementById(`f${q.substring(1)}`);
+        if (!selected) {
+            feedback.textContent = "Please select an answer.";
+            feedback.style.color = "orange";
+        } else if (selected.value === answers[q]) {
+            feedback.textContent = "Correct ✅";
+            feedback.style.color = "green";
+        } else {
+            feedback.textContent = `Wrong ❌ The correct answer is ${answers[q]}.`;
+            feedback.style.color = "red";
+        }
+    }
+}
+</script>
+
   </div>
 
   <div id="cast" class="section">
@@ -113,3 +201,4 @@
   </script>
 </body>
 </html>
+
