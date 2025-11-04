@@ -207,9 +207,6 @@ function checkSOPQuiz() {
   // Hide all sections initially
   sections.forEach(section => section.style.display = "none");
 
-  // Show Scanning by default
-  document.getElementById("Scanning").style.display = "block";
-
   topicSelect.addEventListener("change", function() {
     sections.forEach(section => section.style.display = "none");
     const selected = this.value;
@@ -223,6 +220,7 @@ function checkSOPQuiz() {
     
 </body>
 </html>
+
 
 
 
