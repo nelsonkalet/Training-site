@@ -200,22 +200,30 @@ function checkSOPQuiz() {
   </div>
   
   <div>
-  <script>
-    const topicSelect = document.getElementById("topicSelect");
-    const sections = document.querySelectorAll(".section");
+<script>
+  const topicSelect = document.getElementById("topicSelect");
+  const sections = document.querySelectorAll(".section");
 
-    topicSelect.addEventListener("change", function() {
-      sections.forEach(section => section.style.display = "none");
-      const selected = this.value;
-      if (selected) {
-        document.getElementById(selected).style.display = "block";
-      }
-    });
-  </script>
+  // Hide all sections initially
+  sections.forEach(section => section.style.display = "none");
+
+  // Show Scanning by default
+  document.getElementById("Scanning").style.display = "block";
+
+  topicSelect.addEventListener("change", function() {
+    sections.forEach(section => section.style.display = "none");
+    const selected = this.value;
+    if (selected) {
+      document.getElementById(selected).style.display = "block";
+    }
+  });
+</script>
+
    </div>
     
 </body>
 </html>
+
 
 
 
